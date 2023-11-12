@@ -5,25 +5,27 @@ let flavor = prompt('Please enter comma separated froyo flavors:', 'vanilla,vani
 const flavorsArr = flavor.split(',');
 console.log('flavorsArr:',flavorsArr);
 
+const flavorObj = countFlavors(flavorsArr);
 
-console.log(`Your order is : ', ${countFlavors(flavorsArr)}`);
+
+console.log(
+  `You have ordered ${flavorObj['vanilla']} vanilla, ${flavorObj.coffee} coffee, ${flavorObj.strawberry} strawberry.`);
 
 /**
  * 
  * @param {[]}flavors an array of flavors
- * @returns {flavorObj} an object contatining flavors and frequency of flavors
+ * @returns {flavorCount} an object contatining flavors and frequency of flavors
  */
-function countFlavors(flavors) {
-  const flavorObj = {};
-  flavors.forEach(flavor => {
-    console.log('flavor inside foreach',flavor)
-    if(flavorObj.hasOwnProperty(flavor)){
-      flavorObj[flavor] += 1;
+ function countFlavors(flavors) {
+    const flavorCount = {};
+    flavors.forEach(flavor => {
+    if(flavorCount.hasOwnProperty(flavor)){
+      flavorCount[flavor] += 1;
     } else {
-      flavorObj[flavor] = 1;
+      flavorCount[flavor] = 1;
     }
   });
-  return flavorObj;
+  return flavorCount;
 }
 
 
